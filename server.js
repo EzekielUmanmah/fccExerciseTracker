@@ -200,8 +200,8 @@ app.use((req, res, next) => {console.log('not found middleware')
 // Error Handling Middleware
 app.use((err, req, res, next) => {
   let errCode, errMessage
-console.log(Object.keys(err),'Object.keys(err)')
-console.log(err, 'err')
+//console.log(Object.keys(err),'Object.keys(err)')
+//console.log(err, 'err')
   if (err.errors) {
     // mongoose validation error
     errCode = 400 // bad request
@@ -212,7 +212,7 @@ console.log(err, 'err')
     errMessage = keys.length === 1 ? err.errors[keys[0]].message : 
     keys.map(x => err.errors[`${x}`].message).toString()
   } else {
-    console.log(2)
+    //console.log(2)
     // generic or custom error
     errCode = err.status || 500
     errMessage = err.message || 'Internal Server Error'
