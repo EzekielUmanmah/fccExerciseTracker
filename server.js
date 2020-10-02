@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 //var mongodb = require('mongodb');
 //const ObjectId = mongodb.ObjectID;
 const cors = require('cors');
-
+/
 //connect to MongoDB 
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOLAB_URI, {
