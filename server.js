@@ -130,6 +130,17 @@ app.post('/api/exercise/add', (req, res, next)=>{
 
 });
 
+//test verifying __v field's function by deleting an exercise
+app.get('/delete', (req, res, next)=>{
+  const {userId, num} = req.query;
+  
+  userProfile.findById(userId, (err, data)=>{
+    data.log.splice(num,del)
+    res.json(data)
+    data.save()
+  })
+})
+
 //GET: serve an array of all user profiles
 app.get('/api/exercise/users', async (req, res, next) => {
   try {
