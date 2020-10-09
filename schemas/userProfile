@@ -1,0 +1,18 @@
+const mongoose = require('mongoose');
+const exerciseSchema = require('../schemas/addExercise');
+
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    validate: {
+      validator: function(str) {
+        return /^[\w]+$/i.test(str)
+      },
+      message: 'A username must consist of only alphanumeric characters including underscore and cannot contain blank space.'
+    }
+  },
+  log: [exerciseSchema],
+  count: { type: Number, default: 0 }
+});
+
+module.exports = mongoose.model('userProfile', userSchema);

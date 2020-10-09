@@ -1,0 +1,20 @@
+const mongoose = require('mongoose');
+
+const exerciseSchema = new mongoose.Schema({
+  description: {
+    type: String,
+    validate: {
+      validator: function(str) {
+        return /[\w]+/.test(str)
+      },
+      message: 'Description must be word characters.'
+    }
+  },
+  duration: {
+    type: Number,
+    min: 0,
+  },
+  date: String
+});
+
+module.exports = exerciseSchema;
