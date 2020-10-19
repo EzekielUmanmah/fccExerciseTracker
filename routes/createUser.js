@@ -6,7 +6,7 @@ const userProfile = require('../schemas/userProfile');
 router.post('/', (req, res, next) => {
 
   const {username} = req.body;
-
+//
   userProfile.findOne({username})
     .exec()
     .then(async(result) => { 

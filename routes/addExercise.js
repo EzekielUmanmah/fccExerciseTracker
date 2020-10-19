@@ -20,7 +20,7 @@ router.post('/', (req, res, next) => {
   return userProfile.findById(userId)
     .exec()
     .then( async profile => {
-      
+      //
       if(!profile) throw new Error(`Profile with the id: ${userId} was not found.`);
 
       await update.validate();
