@@ -10,7 +10,6 @@ mongoose.connect(process.env.MONGOLAB_URI, {
 }).then(() => console.log('Connected to MongoDB.'))
   .catch((e) => console.error('Something went wrong...', e));
 
-//enable fcc tests
 app.use(cors());
 
 //bodyparser enables parsing POSTed urlencoded data
@@ -41,13 +40,10 @@ app.use('/api/exercise/log', getOneUser);
 
 // Not found middleware
 app.use((req, res, next) => {
-  //return next({ status: 404, message: 'not found' })
   const error = new Error(
     `The path ${req.originalUrl} was not found.`
   );
-  
   error.statusCode = 404;
- 
   next(error);
 });
 
@@ -59,18 +55,15 @@ app.use((err, req, res, next) => {
     errCode = 400 // bad request
     const keys = Object.keys(err.errors);
     //iterate through all thrown error keys and return each msg
-    //errMessage = keys.length === 1 ? err.errors[keys[0]].message :
-    errMessage = keys.map(x => err.errors[`${x}`].message).toString()
+    errMessage = keys.map(x => err.errors[`${x}`].message).join()
   } else {
     // generic or custom error
     errCode = err.status || 500
     errMessage = err.message || 'Internal Server Error'
   }
-  res.status(errCode).type('txt')
-    .send(errMessage)
+  res.status(errCode).type('txt').send(errMessage)
 });
 
-
-const listener = app.listen(process.env.PORT || 3000, () => {
+const listener = app.listen(process.env.PORT || 2000, () => {
   console.log('Your app is listening on port ' + listener.address().port)
 })
